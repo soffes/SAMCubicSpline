@@ -8,10 +8,10 @@
 
 #import "SAMCubicSpline.h"
 
-#if TARGET_OS_MAC
-#define SAMCGPointValue(value) [value pointValue]
-#else
+#if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
 #define SAMCGPointValue(value) [value CGPointValue]
+#else
+#define SAMCGPointValue(value) [value pointValue]
 #endif
 
 @interface SAMCubicSpline ()
