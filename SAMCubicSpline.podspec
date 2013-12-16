@@ -7,6 +7,6 @@ Pod::Spec.new do |spec|
   spec.source = {:git => 'https://github.com/soffes/SAMCubicSpline.git', :tag => "v#{spec.version}"}
   spec.license = { :type => 'MIT', :file => 'LICENSE' }
   spec.requires_arc = true
-  spec.frameworks = 'Foundation'
+  spec.frameworks = 'Foundation', 'CoreGraphics'
   spec.source_files = 'SAMCubicSpline'
 end
