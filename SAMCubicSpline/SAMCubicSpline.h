@@ -6,6 +6,11 @@
 //  Copyright (c) 2013-2014 Sam Soffes. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+#if TARGET_OS_IOS
+#import <UIKit/UIKit.h>
+#endif
+
 @interface SAMCubicSpline : NSObject
 
 /**
