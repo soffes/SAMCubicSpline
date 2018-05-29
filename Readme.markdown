@@ -17,12 +17,22 @@ If you're not using CocoaPods, simply add the source files in the `SAMCubicSplin
 A quick sample to draw a spline into an already setup `CGContextRef` and assumes you'll finish drawing the line at the end.
 
 ``` objc
+#import "SAMCubicSpline.h"
+
 // Setup a spline with some control points
+#if TARGET_OS_IOS
 SAMCubicSpline *spline = [[SAMCubicSpline alloc] initWithPoints:@[
   [NSValue valueWithCGPoint:CGPointMake(0.0f, 0.039f)],
   [NSValue valueWithCGPoint:CGPointMake(0.588f, 0.525f)],
   [NSValue valueWithCGPoint:CGPointMake(1.0f, 1.0f)],
 ]];
+#else
+SAMCubicSpline *spline = [[SAMCubicSpline alloc] initWithPoints:@[
+  [NSValue valueWithPoint:CGPointMake(0.0f, 0.039f)],
+  [NSValue valueWithPoint:CGPointMake(0.588f, 0.525f)],
+  [NSValue valueWithPoint:CGPointMake(1.0f, 1.0f)],
+]];
+#endif
 
 // Iterate over the X values in the area we want to draw
 CGSize graphSize = CGSizeMake(100.0f, 100.0f);

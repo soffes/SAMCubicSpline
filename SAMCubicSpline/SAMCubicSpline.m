@@ -6,13 +6,16 @@
 //  Copyright (c) 2013-2014 Sam Soffes. All rights reserved.
 //
 
-#import "SAMCubicSpline.h"
+#import <Foundation/Foundation.h>
 
-#if TARGET_IPHONE_SIMULATOR || TARGET_OS_IPHONE
+#if TARGET_OS_IOS
+#import <UIKit/UIKit.h>
 #define SAMCGPointValue(value) [value CGPointValue]
 #else
 #define SAMCGPointValue(value) [value pointValue]
 #endif
+
+#import "SAMCubicSpline.h"
 
 @interface SAMCubicSpline ()
 @property (nonatomic, copy) NSArray *points;
@@ -29,7 +32,7 @@
 
 		if (points.count > 0) {
 			NSUInteger count = points.count;
-			NSUInteger n = count; // - 1;
+			NSUInteger n = count - 1;
 			CGFloat x[count];
 			CGFloat a[count];
 			CGFloat h[count];
@@ -40,7 +43,7 @@
 			CGFloat k[count];
 			CGFloat s[count];
 
-			for (NSUInteger i = 0; i < points.count; i++) {
+			for (NSUInteger i = 0; i < count; i++) {
 				CGPoint point = SAMCGPointValue(points[i]);
 				x[i] = point.x;
 				a[i] = point.y;
@@ -69,9 +72,9 @@
 			l[n] = 1;
 			z[n] = 0;
 
-			NSMutableArray *b = [[NSMutableArray alloc] initWithCapacity:n];
-			NSMutableArray *c = [[NSMutableArray alloc] initWithCapacity:n];
-			NSMutableArray *d = [[NSMutableArray alloc] initWithCapacity:n];
+			NSMutableArray *b = [[NSMutableArray alloc] initWithCapacity:n+1];
+			NSMutableArray *c = [[NSMutableArray alloc] initWithCapacity:n+1];
+			NSMutableArray *d = [[NSMutableArray alloc] initWithCapacity:n+1];
 
 			for (NSUInteger i = 0; i <= n; i++) {
 				b[i] = @0;
